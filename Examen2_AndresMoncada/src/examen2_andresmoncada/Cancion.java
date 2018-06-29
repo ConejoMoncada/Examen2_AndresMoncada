@@ -69,7 +69,7 @@ public class Cancion {
 
     @Override
     public String toString() {
-        return nombre + " " + duracion + 's';
+        return nombre + " Artista: " + artista + " " + duracion + 's';
     }
     
 }
