@@ -14,6 +14,7 @@ import java.util.logging.Logger;
  */
 public class Play extends javax.swing.JDialog implements Runnable{
     private static Cancion c;
+    private boolean cont = true;
     /**
      * Creates new form Play
      */
@@ -94,7 +95,7 @@ public class Play extends javax.swing.JDialog implements Runnable{
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -134,26 +135,33 @@ public class Play extends javax.swing.JDialog implements Runnable{
 
     @Override
     public void run() {
-        label_nom.setText(c.getNombre());
-        label_art.setText(c.getArtista());
-        int min = 0,seg = 0;
-        for (int i = 0; i < c.getDuracion(); i++) {
-            try {
+        if(cont){
+            label_nom.setText(c.getNombre());
+            label_art.setText(c.getArtista());
+            int min = 0,seg = 0;
+            for (int i = 0; i < c.getDuracion(); i++) {
                 if(seg < 10)
                     label_tiempo.setText(min+":0"+seg);
                 else
-                    label_tiempo.setText(min+":0"+seg);
+                    label_tiempo.setText(min+":"+seg);
                 pb.setValue((i*100)/c.getDuracion());
                 seg++;
                 if(seg == 60){
                     seg = 0;
                     min++;
                 }
-                Thread.sleep(c.getDuracion()*1000);
-            } catch (InterruptedException ex) {
-                
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+
+                }
             }
+            if(seg < 10)
+                label_tiempo.setText(min+":0"+seg);
+            else
+                label_tiempo.setText(min+":"+seg);
+            pb.setValue(100);
+            cont = false;
         }
-        pb.setValue(100);
     }
 }

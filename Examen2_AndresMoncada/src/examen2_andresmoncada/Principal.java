@@ -117,6 +117,9 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         jt_pl = new javax.swing.JTree();
         f_fav = new javax.swing.JFrame();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jt_fav = new javax.swing.JTree();
+        jButton16 = new javax.swing.JButton();
         cb_menu = new javax.swing.JComboBox<>();
         boton_in = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -808,15 +811,36 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Favoritos");
+        jt_fav.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane10.setViewportView(jt_fav);
+
+        jButton16.setText("Reproducir");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout f_favLayout = new javax.swing.GroupLayout(f_fav.getContentPane());
         f_fav.getContentPane().setLayout(f_favLayout);
         f_favLayout.setHorizontalGroup(
             f_favLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(f_favLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton16)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         f_favLayout.setVerticalGroup(
             f_favLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(f_favLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(f_favLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton16)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1146,7 +1170,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_f_siWindowClosing
 
     private void jmi_plActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_plActionPerformed
-        DefaultTreeModel tm = new DefaultTreeModel(new DefaultMutableTreeNode("PlayLists"));
+        DefaultTreeModel tm = (DefaultTreeModel)jt_pl.getModel();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Playlists");
         DefaultMutableTreeNode np;
         DefaultMutableTreeNode nc;
@@ -1163,7 +1187,7 @@ public class Principal extends javax.swing.JFrame {
         jd_verpl.setModal(true);
         jd_verpl.pack();
         jd_verpl.setLocationRelativeTo(f_si);
-        jd_verpl.setVisible(false);
+        jd_verpl.setVisible(true);
     }//GEN-LAST:event_jmi_plActionPerformed
 
     private void jmi_cpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cpActionPerformed
@@ -1172,8 +1196,36 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmi_cpActionPerformed
 
     private void jmi_favActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_favActionPerformed
-        // TODO add your handling code here:
+        DefaultTreeModel tm = (DefaultTreeModel)jt_fav.getModel();
+        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Favoritos");
+        DefaultMutableTreeNode nc = new DefaultMutableTreeNode();
+        for (Cancion c : utemp.getFavoritos().getCanciones()) {
+            nc = new DefaultMutableTreeNode(c);
+            raiz.add(nc);
+        }
+        raiz.add(nc);
+        tm.setRoot(raiz);
+        tm.reload();
+        f_exp.setVisible(false);
+        f_fav.pack();
+        f_fav.setLocationRelativeTo(f_exp);
+        f_fav.setVisible(true);
     }//GEN-LAST:event_jmi_favActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        DefaultTreeModel tm = (DefaultTreeModel)jt_fav.getModel();
+        if(jt_fav.getSelectionCount() > 0){
+            DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)jt_fav.getSelectionPath().getLastPathComponent();
+            if(nodo.getUserObject() instanceof Cancion){
+                System.out.println("play");
+                Cancion c = (Cancion)nodo.getUserObject();
+                Play reproductor = new Play(f_fav,false,c);
+                reproductor.setVisible(true);
+                Thread t = new Thread(reproductor);
+                t.start();
+            }
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -1186,7 +1238,7 @@ public class Principal extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -1226,6 +1278,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1256,6 +1309,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1283,6 +1337,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_pl;
     private javax.swing.JMenuItem jmi_salir;
     private javax.swing.JTable jt_alb;
+    private javax.swing.JTree jt_fav;
     private javax.swing.JTree jt_pl;
     private javax.swing.JLabel label_albnom;
     private javax.swing.JTextField tf_aart;
