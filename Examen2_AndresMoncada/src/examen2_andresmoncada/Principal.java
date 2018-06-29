@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -66,6 +67,22 @@ public class Principal extends javax.swing.JFrame {
         tf_cgen = new javax.swing.JTextField();
         tf_dur = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
+        f_alb = new javax.swing.JFrame();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jl_alb = new javax.swing.JList<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jt_alb = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
+        label_albnom = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jd_na = new javax.swing.JDialog();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        tf_anom = new javax.swing.JTextField();
+        tf_aart = new javax.swing.JTextField();
+        jButton11 = new javax.swing.JButton();
         cb_menu = new javax.swing.JComboBox<>();
         boton_in = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -227,7 +244,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel7.setText("Canciones");
 
-        jLabel8.setText("Albums");
+        jLabel8.setText("Albumes");
 
         jButton5.setText("Agregar Canción");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -250,11 +267,11 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(f_cancLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(f_cancLayout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(90, 90, 90)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
@@ -275,8 +292,8 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(f_cancLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addGroup(f_cancLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
@@ -342,6 +359,166 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(19, 19, 19))
+        );
+
+        f_alb.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                f_albWindowClosing(evt);
+            }
+        });
+
+        jl_alb.setModel(new DefaultListModel());
+        jl_alb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_albMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jl_alb);
+
+        jt_alb.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Artista", "Género", "Duración"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(jt_alb);
+
+        jLabel12.setText("Albumes");
+
+        jButton8.setText("Agregar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Eliminar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setText("Regresar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout f_albLayout = new javax.swing.GroupLayout(f_alb.getContentPane());
+        f_alb.getContentPane().setLayout(f_albLayout);
+        f_albLayout.setHorizontalGroup(
+            f_albLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f_albLayout.createSequentialGroup()
+                .addGroup(f_albLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(f_albLayout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel12))
+                    .addGroup(f_albLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(f_albLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(f_albLayout.createSequentialGroup()
+                                .addComponent(jButton8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton9))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(f_albLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5)
+                    .addComponent(label_albnom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, f_albLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton10)
+                .addContainerGap())
+        );
+        f_albLayout.setVerticalGroup(
+            f_albLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(f_albLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(f_albLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(label_albnom))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(f_albLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(f_albLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton10)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jLabel13.setText("Nombre");
+
+        jLabel14.setText("Artista");
+
+        jButton11.setText("Agregar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_naLayout = new javax.swing.GroupLayout(jd_na.getContentPane());
+        jd_na.getContentPane().setLayout(jd_naLayout);
+        jd_naLayout.setHorizontalGroup(
+            jd_naLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_naLayout.createSequentialGroup()
+                .addGroup(jd_naLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_naLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jd_naLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(tf_anom, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                        .addGroup(jd_naLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(tf_aart)))
+                    .addGroup(jd_naLayout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel14))
+                    .addGroup(jd_naLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel13))
+                    .addGroup(jd_naLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jButton11)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jd_naLayout.setVerticalGroup(
+            jd_naLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_naLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addGap(10, 10, 10)
+                .addComponent(tf_anom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addGap(18, 18, 18)
+                .addComponent(tf_aart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jButton11)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -415,6 +592,15 @@ public class Principal extends javax.swing.JFrame {
                 this.setVisible(false);
                 break;
             case 2://Albums
+                lm = new DefaultListModel();
+                for (Album a : albums) {
+                    lm.addElement(a);
+                }
+                jl_alb.setModel(lm);
+                f_alb.pack();
+                f_alb.setLocationRelativeTo(this);
+                f_alb.setVisible(true);
+                this.setVisible(false);
                 break;
             case 3://Log in
                 break;
@@ -427,7 +613,9 @@ public class Principal extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try{
             DefaultListModel lm = (DefaultListModel) jl_u.getModel();
-            lm.addElement(new Usuario(tf_nom.getText(),Integer.parseInt(tf_edad.getText()),tf_user.getText(),tf_pass.getText()));
+            Usuario u = new Usuario(tf_nom.getText(),Integer.parseInt(tf_edad.getText()),tf_user.getText(),tf_pass.getText());
+            lm.addElement(u);
+            usuarios.add(u);
             jl_u.setModel(lm);
             jd_nu.setVisible(false);
             tf_nom.setText("");
@@ -448,8 +636,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(jl_u.getSelectedIndex() >= 0){
-             DefaultListModel lm = (DefaultListModel) jl_u.getModel();
+            DefaultListModel lm = (DefaultListModel) jl_u.getModel();
             lm.remove(jl_u.getSelectedIndex());
+            usuarios.remove(jl_u.getSelectedIndex());
             jl_u.setModel(lm);
         }else
             JOptionPane.showMessageDialog(f_usuarios, "Seleccione un usuario en la lista primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -466,7 +655,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jl_aMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_aMouseClicked
         if(jl_a.getSelectedIndex() >= 0){
-            DefaultListModel lm = new DefaultListModel();
+            DefaultListModel lm = (DefaultListModel) jl_a.getModel();
             atemp = (Album)lm.getElementAt(jl_a.getSelectedIndex());
             DefaultListModel lmc = new DefaultListModel();
             for (Cancion c : atemp.getCanciones()) {
@@ -492,6 +681,7 @@ public class Principal extends javax.swing.JFrame {
         try {
             Cancion c = new Cancion(tf_cnom.getText(),atemp.getArtista(),tf_cgen.getText(),Integer.parseInt(tf_dur.getText()));
             atemp.getCanciones().add(c);
+            albums.set(jl_a.getSelectedIndex(), atemp);
             DefaultListModel lm = (DefaultListModel) jl_a.getModel();
             lm.setElementAt(atemp, jl_a.getSelectedIndex());
             tf_cnom.setText("");
@@ -511,6 +701,56 @@ public class Principal extends javax.swing.JFrame {
         f_canc.setVisible(false);
         setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jl_albMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_albMouseClicked
+        if(jl_alb.getSelectedIndex() >= 0){
+            DefaultListModel lm = (DefaultListModel) jl_alb.getModel();
+            atemp = (Album)lm.getElementAt(jl_alb.getSelectedIndex());
+            label_albnom.setText(atemp.getNombre());
+            DefaultTableModel tm = (DefaultTableModel) jt_alb.getModel();
+            for (Cancion c : atemp.getCanciones()) {
+                tm.addRow(c.getRow());
+            }
+            jt_alb.setModel(tm);
+        }
+    }//GEN-LAST:event_jl_albMouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        jd_na.setModal(true);
+        jd_na.pack();
+        jd_na.setLocationRelativeTo(f_canc);
+        jd_na.setVisible(true);        
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void f_albWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_f_albWindowClosing
+        setVisible(true);
+    }//GEN-LAST:event_f_albWindowClosing
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        f_alb.setVisible(false);
+        setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        atemp = new Album(tf_anom.getText(),tf_aart.getText());
+        albums.add(atemp);
+        DefaultListModel lm = (DefaultListModel) jl_alb.getModel();
+        lm.addElement(atemp);
+        jl_alb.setModel(lm);
+        tf_anom.setText("");
+        tf_aart.setText("");
+        jd_na.setVisible(false);
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        if(jl_alb.getSelectedIndex() >= 0){
+            DefaultListModel lm = (DefaultListModel) jl_alb.getModel();
+            lm.remove(jl_alb.getSelectedIndex());
+            albums.remove(jl_alb.getSelectedIndex());
+            jl_alb.setModel(lm);
+        }else
+            JOptionPane.showMessageDialog(f_usuarios, "Seleccione un album en la lista primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -550,18 +790,26 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_in;
     private javax.swing.JComboBox<String> cb_menu;
+    private javax.swing.JFrame f_alb;
     private javax.swing.JFrame f_canc;
     private javax.swing.JFrame f_usuarios;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -573,11 +821,19 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JDialog jd_na;
     private javax.swing.JDialog jd_nc;
     private javax.swing.JDialog jd_nu;
     private javax.swing.JList<String> jl_a;
+    private javax.swing.JList<String> jl_alb;
     private javax.swing.JList<String> jl_c;
     private javax.swing.JList<String> jl_u;
+    private javax.swing.JTable jt_alb;
+    private javax.swing.JLabel label_albnom;
+    private javax.swing.JTextField tf_aart;
+    private javax.swing.JTextField tf_anom;
     private javax.swing.JTextField tf_cgen;
     private javax.swing.JTextField tf_cnom;
     private javax.swing.JTextField tf_dur;

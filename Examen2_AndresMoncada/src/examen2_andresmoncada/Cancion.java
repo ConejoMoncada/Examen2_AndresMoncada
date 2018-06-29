@@ -14,6 +14,7 @@ public class Cancion {
     private String artista;
     private String genero;
     private int duracion;
+    private Object[] row;
 
     public Cancion() {
     }
@@ -55,6 +56,15 @@ public class Cancion {
 
     public void setDuracion(int duracion) {
         this.duracion = duracion;
+    }
+
+    public Object[] getRow() {
+        row = new Object[4];
+        row[0] = nombre;
+        row[1] = artista;
+        row[2] = genero;
+        row[4] = duracion;
+        return row;
     }
 
     @Override
