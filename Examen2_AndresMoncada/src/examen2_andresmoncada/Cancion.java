@@ -63,7 +63,7 @@ public class Cancion {
         row[0] = nombre;
         row[1] = artista;
         row[2] = genero;
-        row[4] = duracion;
+        row[3] = duracion;
         return row;
     }
 

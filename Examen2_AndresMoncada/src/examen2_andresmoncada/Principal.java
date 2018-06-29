@@ -10,6 +10,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -83,7 +85,6 @@ public class Principal extends javax.swing.JFrame {
         tf_anom = new javax.swing.JTextField();
         tf_aart = new javax.swing.JTextField();
         jButton11 = new javax.swing.JButton();
-        jFrame1 = new javax.swing.JFrame();
         jd_signin = new javax.swing.JDialog();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -91,9 +92,11 @@ public class Principal extends javax.swing.JFrame {
         tf_sipass = new javax.swing.JPasswordField();
         jButton12 = new javax.swing.JButton();
         f_si = new javax.swing.JFrame();
+        jLabel19 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmi_exp = new javax.swing.JMenuItem();
+        jmi_cp = new javax.swing.JMenuItem();
         jmi_pl = new javax.swing.JMenuItem();
         jmi_fav = new javax.swing.JMenuItem();
         jmi_salir = new javax.swing.JMenuItem();
@@ -110,6 +113,10 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         jl_ps = new javax.swing.JList<>();
         jButton15 = new javax.swing.JButton();
+        jd_verpl = new javax.swing.JDialog();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jt_pl = new javax.swing.JTree();
+        f_fav = new javax.swing.JFrame();
         cb_menu = new javax.swing.JComboBox<>();
         boton_in = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -548,17 +555,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         jLabel15.setText("Username");
 
         jLabel16.setText("Contraseña");
@@ -608,6 +604,15 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        f_si.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                f_siWindowClosing(evt);
+            }
+        });
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel19.setText("Hola");
+
         jMenu1.setText("Acciones");
 
         jmi_exp.setText("Explorar");
@@ -618,10 +623,28 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(jmi_exp);
 
+        jmi_cp.setText("Crear Playlists");
+        jmi_cp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_cpActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmi_cp);
+
         jmi_pl.setText("Ver Playlists");
+        jmi_pl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_plActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmi_pl);
 
         jmi_fav.setText("Ver Favoritos");
+        jmi_fav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_favActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmi_fav);
 
         jmi_salir.setText("Salir");
@@ -640,11 +663,17 @@ public class Principal extends javax.swing.JFrame {
         f_si.getContentPane().setLayout(f_siLayout);
         f_siLayout.setHorizontalGroup(
             f_siLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(f_siLayout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(jLabel19)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         f_siLayout.setVerticalGroup(
             f_siLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(f_siLayout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(jLabel19)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         f_exp.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -756,6 +785,38 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton15)
                 .addContainerGap())
+        );
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Playlists");
+        jt_pl.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane9.setViewportView(jt_pl);
+
+        javax.swing.GroupLayout jd_verplLayout = new javax.swing.GroupLayout(jd_verpl.getContentPane());
+        jd_verpl.getContentPane().setLayout(jd_verplLayout);
+        jd_verplLayout.setHorizontalGroup(
+            jd_verplLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_verplLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jd_verplLayout.setVerticalGroup(
+            jd_verplLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_verplLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout f_favLayout = new javax.swing.GroupLayout(f_fav.getContentPane());
+        f_fav.getContentPane().setLayout(f_favLayout);
+        f_favLayout.setHorizontalGroup(
+            f_favLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        f_favLayout.setVerticalGroup(
+            f_favLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1003,7 +1064,8 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         if(v){
-            this.setVisible(false);
+            jd_signin.setVisible(false);
+            setVisible(false);
             tf_siu.setText("");
             tf_sipass.setText("");
             f_si.pack();
@@ -1071,15 +1133,52 @@ public class Principal extends javax.swing.JFrame {
         DefaultListModel lmp = (DefaultListModel) jl_ps.getModel();
         if(jl_ps.getSelectedIndex() == 0){
             utemp.getFavoritos().getCanciones().add((Cancion)lm.getElementAt(jl_expc.getSelectedIndex()));
+            jd_pl.setVisible(false);
         }else if(jl_ps.getSelectedIndex() > 0){
             utemp.getPlaylists().get(jl_ps.getSelectedIndex() - 1).getCanciones().add((Cancion)lm.getElementAt(jl_expc.getSelectedIndex()));
+            jd_pl.setVisible(false);
         }else
             JOptionPane.showMessageDialog(f_usuarios, "Escoja playlist primero", "Advertencia", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void f_siWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_f_siWindowClosing
+        setVisible(true);
+    }//GEN-LAST:event_f_siWindowClosing
+
+    private void jmi_plActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_plActionPerformed
+        DefaultTreeModel tm = new DefaultTreeModel(new DefaultMutableTreeNode("PlayLists"));
+        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Playlists");
+        DefaultMutableTreeNode np;
+        DefaultMutableTreeNode nc;
+        for (PlayList p : utemp.getPlaylists()) {
+            np = new DefaultMutableTreeNode(p.getNombre());
+            for (Cancion c : p.getCanciones()) {
+                nc = new DefaultMutableTreeNode(c);
+                np.add(nc);
+            }
+            raiz.add(np);
+        }
+        tm.setRoot(raiz);
+        tm.reload();
+        jd_verpl.setModal(true);
+        jd_verpl.pack();
+        jd_verpl.setLocationRelativeTo(f_si);
+        jd_verpl.setVisible(false);
+    }//GEN-LAST:event_jmi_plActionPerformed
+
+    private void jmi_cpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cpActionPerformed
+        String nombre = JOptionPane.showInputDialog(f_si, "Nombre de la playlist:");
+        utemp.getPlaylists().add(new PlayList(nombre));
+    }//GEN-LAST:event_jmi_cpActionPerformed
+
+    private void jmi_favActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_favActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_favActionPerformed
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        JOptionPane.showMessageDialog(null, "Si una lista de canciones no se actualiza\n" + "hacer clic otra vez en su album");
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1117,6 +1216,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JFrame f_alb;
     private javax.swing.JFrame f_canc;
     private javax.swing.JFrame f_exp;
+    private javax.swing.JFrame f_fav;
     private javax.swing.JFrame f_si;
     private javax.swing.JFrame f_usuarios;
     private javax.swing.JButton jButton1;
@@ -1134,7 +1234,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1145,6 +1244,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1163,11 +1263,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JDialog jd_na;
     private javax.swing.JDialog jd_nc;
     private javax.swing.JDialog jd_nu;
     private javax.swing.JDialog jd_pl;
     private javax.swing.JDialog jd_signin;
+    private javax.swing.JDialog jd_verpl;
     private javax.swing.JList<String> jl_a;
     private javax.swing.JList<String> jl_alb;
     private javax.swing.JList<String> jl_c;
@@ -1175,11 +1277,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_expc;
     private javax.swing.JList<String> jl_ps;
     private javax.swing.JList<String> jl_u;
+    private javax.swing.JMenuItem jmi_cp;
     private javax.swing.JMenuItem jmi_exp;
     private javax.swing.JMenuItem jmi_fav;
     private javax.swing.JMenuItem jmi_pl;
     private javax.swing.JMenuItem jmi_salir;
     private javax.swing.JTable jt_alb;
+    private javax.swing.JTree jt_pl;
     private javax.swing.JLabel label_albnom;
     private javax.swing.JTextField tf_aart;
     private javax.swing.JTextField tf_anom;
