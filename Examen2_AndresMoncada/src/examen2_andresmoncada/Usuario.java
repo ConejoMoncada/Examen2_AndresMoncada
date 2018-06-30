@@ -5,19 +5,21 @@
  */
 package examen2_andresmoncada;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Dell
  */
-public class Usuario {
+public class Usuario implements Serializable{
     private String nombre;
     private int edad;
     private String user;
     private String pass;
     private ArrayList<PlayList> playlists = new ArrayList();
     private PlayList favoritos = new PlayList("Favoritos");
+    private static final long SerialVersionUID = 263L;
 
     public Usuario() {
     }

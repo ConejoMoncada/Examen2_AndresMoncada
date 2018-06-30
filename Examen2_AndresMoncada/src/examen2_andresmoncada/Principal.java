@@ -120,6 +120,8 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         jt_fav = new javax.swing.JTree();
         jButton16 = new javax.swing.JButton();
+        jpm_tree = new javax.swing.JPopupMenu();
+        jmi_cdel = new javax.swing.JMenuItem();
         cb_menu = new javax.swing.JComboBox<>();
         boton_in = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -792,6 +794,11 @@ public class Principal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Playlists");
         jt_pl.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_pl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_plMouseClicked(evt);
+            }
+        });
         jScrollPane9.setViewportView(jt_pl);
 
         javax.swing.GroupLayout jd_verplLayout = new javax.swing.GroupLayout(jd_verpl.getContentPane());
@@ -842,6 +849,14 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        jmi_cdel.setText("jMenuItem1");
+        jmi_cdel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_cdelActionPerformed(evt);
+            }
+        });
+        jpm_tree.add(jmi_cdel);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -931,8 +946,10 @@ public class Principal extends javax.swing.JFrame {
                 jd_signin.setVisible(true);
                 break;
             case 4://Guardar usuarios
+                guardar();
                 break;
             case 5://Cargar usuarios
+                cargar();
         }
     }//GEN-LAST:event_boton_inActionPerformed
 
@@ -1095,6 +1112,8 @@ public class Principal extends javax.swing.JFrame {
             f_si.pack();
             f_si.setLocationRelativeTo(this);
             f_si.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(jd_signin, "Usuario o contraseña incorrectos");
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -1226,6 +1245,52 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jt_plMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_plMouseClicked
+        if(evt.isMetaDown()){
+            int row = jt_pl.getClosestRowForLocation(evt.getX(), evt.getY());
+            jt_pl.setSelectionRow(row);
+            jpm_tree.show(jt_pl, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_jt_plMouseClicked
+
+    private void jmi_cdelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cdelActionPerformed
+        DefaultTreeModel tm = (DefaultTreeModel)jt_pl.getModel();
+        DefaultMutableTreeNode nodo = ((DefaultMutableTreeNode)jt_pl.getSelectionPath().getLastPathComponent());
+        if(nodo.getUserObject() instanceof Cancion){
+            Cancion c = (Cancion)nodo.getUserObject();
+            String pl = ((String)((DefaultMutableTreeNode)nodo.getParent()).getUserObject());
+            if (pl.equals("Favoritos")){
+                utemp.getFavoritos().getCanciones().remove(c);
+            }else{
+                for (PlayList p : utemp.getPlaylists()) {
+                    if(p.getNombre().equals(pl)){
+                        p.getCanciones().remove(c);
+                    }
+                }
+            }
+            tm.removeNodeFromParent(nodo);
+        }
+        tm.reload();
+    }//GEN-LAST:event_jmi_cdelActionPerformed
+    
+    private void cargar(){
+        Admin a = new Admin("./usuarios.aml");
+        a.cargarArchivo();
+        usuarios = a.getUsuarios();
+        JOptionPane.showMessageDialog(this, "Usuarios cargados");
+    }
+
+    private void guardar(){
+        Admin a = new Admin("./usuarios.aml");
+        for (Usuario u : usuarios) {
+            if(!(a.getUsuarios().contains(u))){
+                a.getUsuarios().add(u);
+            }
+        }
+        a.escribirArchivo();
+        JOptionPane.showMessageDialog(this, "Usuarios guardados exitosamente");
+    }
     /**
      * @param args the command line arguments
      */
@@ -1331,11 +1396,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_expc;
     private javax.swing.JList<String> jl_ps;
     private javax.swing.JList<String> jl_u;
+    private javax.swing.JMenuItem jmi_cdel;
     private javax.swing.JMenuItem jmi_cp;
     private javax.swing.JMenuItem jmi_exp;
     private javax.swing.JMenuItem jmi_fav;
     private javax.swing.JMenuItem jmi_pl;
     private javax.swing.JMenuItem jmi_salir;
+    private javax.swing.JPopupMenu jpm_tree;
     private javax.swing.JTable jt_alb;
     private javax.swing.JTree jt_fav;
     private javax.swing.JTree jt_pl;
